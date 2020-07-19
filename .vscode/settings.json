@@ -1,0 +1,27 @@
+{
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
+    "**/*.css": {
+      "when": "$(basename).less"
+    }
+  },
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "tslint.autoFixOnSave": true,
+  "editor.rulers": [
+    120
+  ],
+  "editor.formatOnPaste": true,
+  "editor.emptySelectionClipboard": false,
+  "workbench.editor.enablePreview": false,
+  "less.lint.boxModel": "warning",
+  "less.lint.compatibleVendorPrefixes": "warning",
+  "less.lint.duplicateProperties": "warning",
+  "tslint.configFile": "./tslint.json"
+}
