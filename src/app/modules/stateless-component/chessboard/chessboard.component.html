@@ -1,0 +1,30 @@
+<div class="main-container">
+  <div class="left-content">
+    <div class="eaten-pieces-container"></div>
+    <div class="eaten-pieces-container"></div>
+  </div>
+  <div class="board-content">
+    <div *ngFor="let _ of this.boardArrayLength; index as i" class="line">
+      <div
+        *ngFor="let _ of this.boardArrayLength; index as j"
+        class="box"
+        [ngClass]="i % 2 === j % 2 ? 'odd' : 'even'"
+      ></div>
+    </div>
+
+    <ng-container *ngFor="let piece of this.board.piecesInGame">
+      <img
+        [src]="piece?.imageUrl"
+        alt="oof"
+        class="board-piece-image"
+        [ngStyle]="{
+          top: this.translateChessYPosToPx(piece?.pos?.y),
+          left: this.translateChessXPosToPx(piece?.pos?.x)
+        }"
+      />
+    </ng-container>
+  </div>
+  <div class="right-content">
+    <div class="history"></div>
+  </div>
+</div>

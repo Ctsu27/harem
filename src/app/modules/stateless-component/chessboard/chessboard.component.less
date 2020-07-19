@@ -1,0 +1,47 @@
+@dark-chess-box: #b58863;
+@light-chess-box: #f0d9b5;
+
+:host {
+  display: block;
+
+  .main-container {
+    .box {
+      flex-shrink: 0;
+      height: 64px;
+      width: 64px;
+    }
+
+    .left-content {
+    }
+
+    .board-content {
+      position: relative;
+
+      .line {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        .odd {
+          background-color: @light-chess-box;
+        }
+        .even {
+          background-color: @dark-chess-box;
+        }
+      }
+
+      .board-piece-image {
+        .box;
+        object-fit: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .right-content {
+      .history {
+      }
+    }
+  }
+}
