@@ -17,6 +17,32 @@
     .board-content {
       position: relative;
 
+      .board-move {
+        .box;
+        position: absolute;
+        background-color: var(--primary);
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+      }
+
+      .board-piece-image {
+        .box;
+        object-fit: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .board-selected-piece {
+        .box;
+        position: absolute;
+        background-color: var(--primary);
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+      }
+
       .line {
         display: flex;
         flex-direction: row;
@@ -28,23 +54,6 @@
         .even {
           background-color: @dark-chess-box;
         }
-      }
-
-      .board-piece-image {
-        .box;
-        object-fit: contain;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-
-      .board-move {
-        .box;
-        position: absolute;
-        background-color: var(--primary);
-        top: 0;
-        left: 0;
-        opacity: 0.5;
       }
     }
 

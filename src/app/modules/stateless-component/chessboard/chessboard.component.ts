@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { Piece, PiecePosition, YPos, XPos } from "src/app/utils/piece/piece";
+import { Piece, PiecePosition, YPos, XPos, PiecePlayerIdEnum } from "src/app/utils/piece/piece";
 import { Pawn } from "src/app/utils/piece/pawn";
 
 @Component({
@@ -102,9 +102,11 @@ export class ChessBoardComponent implements OnInit {
       8: false
     }
   };
+  public playerId = "WHITE";
+  public selectedPiece: Piece;
 
   public board: {
-    turn: "WHITE" | "BLACK";
+    turn: PiecePlayerIdEnum;
     history: PiecePosition[];
     piecesInGame: Piece[];
     piecesEatenByBlack: Piece[];
@@ -113,16 +115,16 @@ export class ChessBoardComponent implements OnInit {
 
   constructor(private cd: ChangeDetectorRef) {
     this.board = {
-      turn: "WHITE",
+      turn: PiecePlayerIdEnum.WHITE,
       history: [],
       piecesInGame: [
         new Pawn({
-          playerId: "BLACK",
+          playerId: PiecePlayerIdEnum.BLACK,
           pos: { y: "1", x: "a" },
           imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
         }),
         new Pawn({
-          playerId: "BLACK",
+          playerId: PiecePlayerIdEnum.BLACK,
           pos: { y: "3", x: "a" },
           imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
         })
@@ -134,6 +136,18 @@ export class ChessBoardComponent implements OnInit {
 
   ngOnInit() {}
 
+  public selectPiece(event: Event, piece: Piece) {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.selectedPiece = piece;
+    this.cd.detectChanges();
+  }
+
+  public clearSelectedPiece() {
+    this.selectedPiece = null;
+  }
+
   public openMovesFrom(event: Event, piece: Piece) {
     if (event) {
       event.stopPropagation();
@@ -141,7 +155,7 @@ export class ChessBoardComponent implements OnInit {
     console.log("%c---> open moves from:", "color: #ff0");
     console.log(piece);
     // piece.getPossibleMovesWith(this.board.piecesInGame);
-    const moves = [new PiecePosition({ y: "4", x: "d" })];
+    const moves = [new PiecePosition({ y: "4", x: "d" }), new PiecePosition({ y: "4", x: "e" })];
     moves.forEach(move => {
       this.moveMap[move.x][move.y] = true;
     });
@@ -179,6 +193,7 @@ export class ChessBoardComponent implements OnInit {
       event.stopPropagation();
     }
     // TODO clear piece target
+    this.clearSelectedPiece();
     this.clearMoves();
   }
 

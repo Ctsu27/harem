@@ -1,7 +1,10 @@
 export type XPos = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
 export type YPos = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
 
-export type PiecePlayerId = "WHITE" | "BLACK";
+export enum PiecePlayerIdEnum {
+  WHITE = "WHITE",
+  BLACK = "BLACK"
+}
 
 export class PiecePosition {
   public y: YPos;
@@ -16,7 +19,7 @@ export class PiecePosition {
 }
 
 export abstract class Piece {
-  public playerId: PiecePlayerId;
+  public playerId: PiecePlayerIdEnum;
   public pos: PiecePosition;
   public imageUrl: string;
 

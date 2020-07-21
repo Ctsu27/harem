@@ -4,14 +4,15 @@
     <div class="eaten-pieces-container"></div>
   </div>
   <div class="board-content">
-    <div *ngFor="let _ of this.boardArrayLength; index as i" class="line">
+    <ng-container *ngFor="let move of this.movesToArray()">
       <div
-        *ngFor="let _ of this.boardArrayLength; index as j"
-        class="box"
-        [ngClass]="i % 2 === j % 2 ? 'odd' : 'even'"
-        (click)="this.resetPlayerActions($event)"
+        class="board-move"
+        [ngStyle]="{
+          top: this.translateChessYPosToPx(move?.y),
+          left: this.translateChessXPosToPx(move?.x)
+        }"
       ></div>
-    </div>
+    </ng-container>
 
     <ng-container *ngFor="let piece of this.board.piecesInGame">
       <img
@@ -22,19 +23,27 @@
           left: this.translateChessXPosToPx(piece?.pos?.x)
         }"
         class="board-piece-image"
-        (click)="this.openMovesFrom($event, piece)"
+        (click)="this.selectPiece($event, piece); this.openMovesFrom($event, piece)"
       />
     </ng-container>
 
-    <ng-container *ngFor="let move of this.movesToArray()">
+    <div
+      *ngIf="this.selectedPiece"
+      class="board-selected-piece"
+      [ngStyle]="{
+        top: this.translateChessYPosToPx(this.selectedPiece.pos?.y),
+        left: this.translateChessXPosToPx(this.selectedPiece.pos?.x)
+      }"
+    ></div>
+
+    <div *ngFor="let _ of this.boardArrayLength; index as i" class="line">
       <div
-        class="board-move"
-        [ngStyle]="{
-          top: this.translateChessYPosToPx(move?.y),
-          left: this.translateChessXPosToPx(move?.x)
-        }"
+        *ngFor="let _ of this.boardArrayLength; index as j"
+        class="box"
+        [ngClass]="i % 2 === j % 2 ? 'odd' : 'even'"
+        (click)="this.resetPlayerActions($event)"
       ></div>
-    </ng-container>
+    </div>
   </div>
   <div class="right-content">
     <div class="history"></div>
