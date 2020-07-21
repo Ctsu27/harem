@@ -9,6 +9,7 @@
         *ngFor="let _ of this.boardArrayLength; index as j"
         class="box"
         [ngClass]="i % 2 === j % 2 ? 'odd' : 'even'"
+        (click)="this.resetPlayerActions($event)"
       ></div>
     </div>
 
@@ -16,12 +17,23 @@
       <img
         [src]="piece?.imageUrl"
         alt="oof"
-        class="board-piece-image"
         [ngStyle]="{
           top: this.translateChessYPosToPx(piece?.pos?.y),
           left: this.translateChessXPosToPx(piece?.pos?.x)
         }"
+        class="board-piece-image"
+        (click)="this.openMovesFrom($event, piece)"
       />
+    </ng-container>
+
+    <ng-container *ngFor="let move of this.movesToArray()">
+      <div
+        class="board-move"
+        [ngStyle]="{
+          top: this.translateChessYPosToPx(move?.y),
+          left: this.translateChessXPosToPx(move?.x)
+        }"
+      ></div>
     </ng-container>
   </div>
   <div class="right-content">

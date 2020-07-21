@@ -27,10 +27,9 @@ export abstract class Piece {
       this.imageUrl = payload.imageUrl;
     }
   }
-}
 
-export class Pawn extends Piece {
-  constructor(payload?: OnlyProperties<Pawn>) {
-    super(payload);
+  // return (XPos + YPos)[]
+  public getPossibleMovesWith(pieces: Piece[]): PiecePosition[] {
+    return [];
   }
 }
