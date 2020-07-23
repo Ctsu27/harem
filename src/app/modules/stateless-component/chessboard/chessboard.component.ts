@@ -1,6 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Piece, PiecePosition, YPos, XPos, PiecePlayerIdEnum } from "src/app/utils/piece/piece";
 import { Pawn } from "src/app/utils/piece/pawn";
+import { Rook } from "src/app/utils/piece/rook";
+import { Knight } from "src/app/utils/piece/knight";
+import { Bishop } from "src/app/utils/piece/bishop";
+import { Queen } from "src/app/utils/piece/queen";
+import { King } from "src/app/utils/piece/king";
 
 @Component({
   selector: "chess-board",
@@ -102,7 +107,7 @@ export class ChessBoardComponent implements OnInit {
       8: false
     }
   };
-  public playerId = "WHITE";
+  public playerId = PiecePlayerIdEnum.BLACK;
   public selectedPiece: Piece;
 
   public board: {
@@ -120,13 +125,163 @@ export class ChessBoardComponent implements OnInit {
       piecesInGame: [
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
-          pos: { y: "1", x: "a" },
+          pos: new PiecePosition({ y: "7", x: "a" }),
           imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
-          pos: { y: "3", x: "a" },
+          pos: new PiecePosition({ y: "7", x: "b" }),
           imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "7", x: "c" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "7", x: "d" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "7", x: "e" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "7", x: "f" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "7", x: "g" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "7", x: "h" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+        }),
+        new Rook({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "h" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/rook.png"
+        }),
+        new Rook({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "a" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/rook.png"
+        }),
+        new Knight({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "b" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/knight.png"
+        }),
+        new Knight({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "g" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/knight.png"
+        }),
+        new Bishop({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "c" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/bishop.png"
+        }),
+        new Bishop({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "f" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/bishop.png"
+        }),
+        new Queen({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "d" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/queen.png"
+        }),
+        new King({
+          playerId: PiecePlayerIdEnum.BLACK,
+          pos: new PiecePosition({ y: "8", x: "e" }),
+          imageUrl: "/assets/player-chess-theme/standard-black/king.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "a" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "b" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "c" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "d" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "e" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "f" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "g" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Pawn({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "2", x: "h" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+        }),
+        new Rook({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "h" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/rook.png"
+        }),
+        new Rook({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "a" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/rook.png"
+        }),
+        new Knight({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "b" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/knight.png"
+        }),
+        new Knight({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "g" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/knight.png"
+        }),
+        new Bishop({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "c" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/bishop.png"
+        }),
+        new Bishop({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "f" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/bishop.png"
+        }),
+        new Queen({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "d" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/queen.png"
+        }),
+        new King({
+          playerId: PiecePlayerIdEnum.WHITE,
+          pos: new PiecePosition({ y: "1", x: "e" }),
+          imageUrl: "/assets/player-chess-theme/standard-white/king.png"
         })
       ],
       piecesEatenByBlack: [],
@@ -154,8 +309,8 @@ export class ChessBoardComponent implements OnInit {
     }
     console.log("%c---> open moves from:", "color: #ff0");
     console.log(piece);
-    // piece.getPossibleMovesWith(this.board.piecesInGame);
-    const moves = [new PiecePosition({ y: "4", x: "d" }), new PiecePosition({ y: "4", x: "e" })];
+    const moves = piece.getPossibleMovesWith(this.board.piecesInGame);
+    console.log(moves);
     moves.forEach(move => {
       this.moveMap[move.x][move.y] = true;
     });
@@ -188,13 +343,26 @@ export class ChessBoardComponent implements OnInit {
     return res;
   }
 
+  public movePieceTo(piece: Piece, position: PiecePosition) {
+    // if (this.board.turn === this.playerId) {
+    piece.pos = new PiecePosition({ ...position });
+    this.swapTurn();
+    this.resetPlayerActions(undefined);
+    // } else {
+    //   console.error("Not your turn dumbass");
+    // }
+  }
+
   public resetPlayerActions(event: Event) {
     if (event) {
       event.stopPropagation();
     }
-    // TODO clear piece target
     this.clearSelectedPiece();
     this.clearMoves();
+  }
+
+  public swapTurn() {
+    this.board.turn = this.board.turn === PiecePlayerIdEnum.WHITE ? PiecePlayerIdEnum.BLACK : PiecePlayerIdEnum.WHITE;
   }
 
   public translateChessYPosToPx(y: YPos): string {

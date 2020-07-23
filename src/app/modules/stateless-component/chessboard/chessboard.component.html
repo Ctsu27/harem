@@ -11,6 +11,7 @@
           top: this.translateChessYPosToPx(move?.y),
           left: this.translateChessXPosToPx(move?.x)
         }"
+        (click)="this.movePieceTo(this.selectedPiece, move)"
       ></div>
     </ng-container>
 
