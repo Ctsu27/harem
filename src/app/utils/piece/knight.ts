@@ -21,8 +21,7 @@ export class Knight extends Piece {
 
     translates.forEach(pos => {
       const piecePosition = Vec2ToPiecePosition(pos);
-      console.log(pos);
-      console.log(piecePosition);
+
       if (piecePosition.x && piecePosition.y) {
         const piece = pieces.find(p => pos.isEqual(p.pos.toVec2()));
         if (!piece || !this.isPieceSamePlayer(piece)) {
