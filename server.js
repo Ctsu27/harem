@@ -3,7 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-const directory = __dirname + "/dist/kh-cv";
+const directory = __dirname + "/dist/harem";
 
 app.use(express.static(directory));
 app.get("*", (req, res) => {

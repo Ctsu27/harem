@@ -24,7 +24,7 @@
           left: this.translateChessXPosToPx(piece?.pos?.x)
         }"
         class="board-piece-image"
-        (click)="this.selectPiece($event, piece); this.openMovesFrom($event, piece)"
+        (click)="this.resetPlayerActions($event); this.selectPiece($event, piece); this.openMovesFrom($event, piece)"
       />
     </ng-container>
 

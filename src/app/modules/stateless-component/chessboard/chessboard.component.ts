@@ -6,6 +6,7 @@ import { Knight } from "src/app/utils/piece/knight";
 import { Bishop } from "src/app/utils/piece/bishop";
 import { Queen } from "src/app/utils/piece/queen";
 import { King } from "src/app/utils/piece/king";
+import { arrayRemove } from "src/app/utils/array";
 
 @Component({
   selector: "chess-board",
@@ -312,6 +313,8 @@ export class ChessBoardComponent implements OnInit {
     const moves = piece.getPossibleMovesWith(this.board.piecesInGame);
     console.log(moves);
     moves.forEach(move => {
+      // check if move does not make king vulnerable
+      // for king, check if can castle
       this.moveMap[move.x][move.y] = true;
     });
     this.cd.detectChanges();
@@ -345,6 +348,19 @@ export class ChessBoardComponent implements OnInit {
 
   public movePieceTo(piece: Piece, position: PiecePosition) {
     // if (this.board.turn === this.playerId) {
+    // check if move is valid
+    const split = arrayRemove(this.board.piecesInGame, p => p.pos.toVec2().isEqual(position.toVec2()));
+    console.log("--> this.board.piecesInGame");
+    console.log(this.board.piecesInGame);
+    console.log("--> split");
+    console.log(split);
+    if (split.element) {
+      if (split.element.playerId === PiecePlayerIdEnum.WHITE) {
+        this.board.piecesEatenByBlack.push(split.element);
+      } else {
+        this.board.piecesEatenByWhite.push(split.element);
+      }
+    }
     piece.pos = new PiecePosition({ ...position });
     this.swapTurn();
     this.resetPlayerActions(undefined);

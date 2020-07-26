@@ -80,4 +80,8 @@ export abstract class Piece {
   public getPossibleMovesWith(pieces: Piece[]): PiecePosition[] {
     return [];
   }
+
+  public isPieceSamePlayer(p: Piece): boolean {
+    return p.playerId === this.playerId;
+  }
 }

@@ -15,6 +15,22 @@ export class Pawn extends Piece {
     if (!pieceVectors.some(vec => forwardPawnPos.isEqual(vec))) {
       possibilities.push(Vec2ToPiecePosition(forwardPawnPos));
     }
+    if (
+      (direction === 1 && pawnPos.y === 1 && !pieceVectors.some(p => p.isEqual({ x: pawnPos.x, y: 2 }))) ||
+      (direction === -1 && pawnPos.y === 6 && !pieceVectors.some(p => p.isEqual({ x: pawnPos.x, y: 5 })))
+    ) {
+      possibilities.push(Vec2ToPiecePosition(new Vec2(pawnPos).add({ x: 0, y: direction + direction })));
+    }
+    const attackPositions: [Vec2, Vec2] = [
+      new Vec2(forwardPawnPos).add({ x: 1, y: 0 }),
+      new Vec2(forwardPawnPos).sub({ x: 1, y: 0 })
+    ];
+    attackPositions.forEach(pos => {
+      const piece = pieces.find(p => pos.isEqual(p.pos.toVec2()));
+      if (piece && !this.isPieceSamePlayer(piece)) {
+        possibilities.push(Vec2ToPiecePosition(pos));
+      }
+    });
     return possibilities;
   }
 }
