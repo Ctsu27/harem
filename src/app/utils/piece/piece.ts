@@ -67,13 +67,20 @@ export abstract class Piece {
   public playerId: PiecePlayerIdEnum;
   public pos: PiecePosition;
   public imageUrl: string;
+  public hasMove: boolean;
 
   constructor(payload?: OnlyProperties<Piece>) {
     if (payload) {
       this.playerId = payload.playerId;
       this.pos = new PiecePosition({ ...payload.pos });
       this.imageUrl = payload.imageUrl;
+      this.hasMove = payload.hasMove;
     }
+  }
+
+  public move(position: PiecePosition) {
+    this.pos = new PiecePosition({ ...position });
+    this.hasMove = true;
   }
 
   // return (XPos + YPos)[]
