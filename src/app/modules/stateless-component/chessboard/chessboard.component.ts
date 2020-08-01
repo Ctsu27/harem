@@ -1,5 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { Piece, PiecePosition, YPos, XPos, PiecePlayerIdEnum } from "src/app/utils/piece/piece";
+import {
+  Piece,
+  PiecePosition,
+  YPos,
+  XPos,
+  PiecePlayerIdEnum,
+  Vec2,
+  Vec2ToPiecePosition
+} from "src/app/utils/piece/piece";
 import { Pawn } from "src/app/utils/piece/pawn";
 import { Rook } from "src/app/utils/piece/rook";
 import { Knight } from "src/app/utils/piece/knight";
@@ -127,162 +135,194 @@ export class ChessBoardComponent implements OnInit {
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "a" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "b" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "c" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "d" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "e" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "f" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "g" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "7", x: "h" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/pawn.png",
+          hasMove: false
         }),
         new Rook({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "h" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/rook.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/rook.png",
+          hasMove: false
         }),
         new Rook({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "a" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/rook.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/rook.png",
+          hasMove: false
         }),
         new Knight({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "b" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/knight.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/knight.png",
+          hasMove: false
         }),
         new Knight({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "g" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/knight.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/knight.png",
+          hasMove: false
         }),
         new Bishop({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "c" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/bishop.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/bishop.png",
+          hasMove: false
         }),
         new Bishop({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "f" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/bishop.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/bishop.png",
+          hasMove: false
         }),
         new Queen({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "d" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/queen.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/queen.png",
+          hasMove: false
         }),
         new King({
           playerId: PiecePlayerIdEnum.BLACK,
           pos: new PiecePosition({ y: "8", x: "e" }),
-          imageUrl: "/assets/player-chess-theme/standard-black/king.png"
+          imageUrl: "/assets/player-chess-theme/standard-black/king.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "a" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "b" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "c" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "d" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "e" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "f" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "g" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Pawn({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "2", x: "h" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/pawn.png",
+          hasMove: false
         }),
         new Rook({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "h" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/rook.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/rook.png",
+          hasMove: false
         }),
         new Rook({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "a" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/rook.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/rook.png",
+          hasMove: false
         }),
         new Knight({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "b" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/knight.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/knight.png",
+          hasMove: false
         }),
         new Knight({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "g" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/knight.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/knight.png",
+          hasMove: false
         }),
         new Bishop({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "c" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/bishop.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/bishop.png",
+          hasMove: false
         }),
         new Bishop({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "f" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/bishop.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/bishop.png",
+          hasMove: false
         }),
         new Queen({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "d" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/queen.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/queen.png",
+          hasMove: false
         }),
         new King({
           playerId: PiecePlayerIdEnum.WHITE,
           pos: new PiecePosition({ y: "1", x: "e" }),
-          imageUrl: "/assets/player-chess-theme/standard-white/king.png"
+          imageUrl: "/assets/player-chess-theme/standard-white/king.png",
+          hasMove: false
         })
       ],
       piecesEatenByBlack: [],
@@ -311,10 +351,44 @@ export class ChessBoardComponent implements OnInit {
     console.log("%c---> open moves from:", "color: #ff0");
     console.log(piece);
     const moves = piece.getPossibleMovesWith(this.board.piecesInGame);
+    if (piece instanceof King) {
+      const backPos = piece.playerId === PiecePlayerIdEnum.WHITE ? 0 : 7;
+      const castles: Array<{ kingTranslatePos: Vec2; rookPos: Vec2; inBetweenPieces: Vec2[] }> = [
+        {
+          kingTranslatePos: piece.pos.toVec2().add({ x: -2, y: 0 }),
+          rookPos: new Vec2({ x: 0, y: backPos }),
+          inBetweenPieces: [
+            new Vec2({ x: 1, y: backPos }),
+            new Vec2({ x: 2, y: backPos }),
+            new Vec2({ x: 3, y: backPos })
+          ]
+        },
+        {
+          kingTranslatePos: piece.pos.toVec2().add({ x: 2, y: 0 }),
+          rookPos: new Vec2({ x: 7, y: backPos }),
+          inBetweenPieces: [new Vec2({ x: 5, y: backPos }), new Vec2({ x: 6, y: backPos })]
+        }
+      ];
+      if (!piece.hasMove) {
+        castles.forEach(castle => {
+          const rook = this.board.piecesInGame.find(
+            p => p instanceof Rook && p.isPieceSamePlayer(p) && !p.hasMove && p.pos.toVec2().isEqual(castle.rookPos)
+          );
+
+          if (
+            rook &&
+            !castle.inBetweenPieces.some(inBetween =>
+              this.board.piecesInGame.some(inGame => inGame.pos.toVec2().isEqual(inBetween))
+            )
+          ) {
+            moves.push(Vec2ToPiecePosition(castle.kingTranslatePos));
+          }
+        });
+      }
+    }
+
     console.log(moves);
     moves.forEach(move => {
-      // check if move does not make king vulnerable
-      // for king, check if can castle
       this.moveMap[move.x][move.y] = true;
     });
     this.cd.detectChanges();
@@ -350,10 +424,6 @@ export class ChessBoardComponent implements OnInit {
     // if (this.board.turn === this.playerId) {
     // check if move is valid
     const split = arrayRemove(this.board.piecesInGame, p => p.pos.toVec2().isEqual(position.toVec2()));
-    console.log("--> this.board.piecesInGame");
-    console.log(this.board.piecesInGame);
-    console.log("--> split");
-    console.log(split);
     if (split.element) {
       if (split.element.playerId === PiecePlayerIdEnum.WHITE) {
         this.board.piecesEatenByBlack.push(split.element);
@@ -361,7 +431,23 @@ export class ChessBoardComponent implements OnInit {
         this.board.piecesEatenByWhite.push(split.element);
       }
     }
-    piece.pos = new PiecePosition({ ...position });
+    if (piece instanceof King && !piece.hasMove) {
+      if (position.toVec2().isEqual({ x: 2, y: piece.pos.toVec2().y })) {
+        const rook = this.board.piecesInGame.find(
+          p =>
+            p instanceof Rook && p.isPieceSamePlayer(piece) && p.pos.toVec2().isEqual({ x: 0, y: piece.pos.toVec2().y })
+        );
+        rook.move(Vec2ToPiecePosition(position.toVec2().add({ x: 1, y: 0 })));
+      } else if (position.toVec2().isEqual({ x: 6, y: piece.pos.toVec2().y })) {
+        const rook = this.board.piecesInGame.find(
+          p =>
+            p instanceof Rook && p.isPieceSamePlayer(piece) && p.pos.toVec2().isEqual({ x: 7, y: piece.pos.toVec2().y })
+        );
+        rook.move(Vec2ToPiecePosition(position.toVec2().add({ x: -1, y: 0 })));
+      } else {
+      }
+    }
+    piece.move(new PiecePosition({ ...position }));
     this.swapTurn();
     this.resetPlayerActions(undefined);
     // } else {
